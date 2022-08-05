@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    
+    <PackageId>Trevisharp.Security.Jwt</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Leonardo Trevisan</Authors>
+    <Company>Trevisharp</Company>
+
   </PropertyGroup>
 
   <ItemGroup>

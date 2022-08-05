@@ -8,10 +8,10 @@ namespace Trevisharp.Security.Jwt;
 public static class JwtExtension
 {
     public static void AddJwt(
-        this WebApplicationBuilder builder, 
+        this IServiceCollection services, 
         int internalKeySize, TimeSpan updatePeriod)
     {
-        builder.Services.AddSingleton<CryptoService>(p =>
+        services.AddSingleton<CryptoService>(p =>
         {
             var service = new CryptoService();
             service.InternalKeySize = internalKeySize;
@@ -19,14 +19,14 @@ public static class JwtExtension
             return service;
         });
 
-        // builder.Services.AddSingleton<IAuthorizationHandler, JwtHandler>();
+        services.AddSingleton<IAuthorizationHandler, JwtHandler>();
 
-        // builder.Services.AddAuthorization(options =>
-        // {
-        //     options.AddPolicy("JwtToken", policy =>
-        //     {
-        //         policy.AddRequirements(new JwtRequirement());
-        //     });
-        // });
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("JwtToken", policy =>
+            {
+                policy.AddRequirements(new JwtRequirement());
+            });
+        });
     }
 }
